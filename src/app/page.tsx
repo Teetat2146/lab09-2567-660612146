@@ -11,38 +11,37 @@ import { useState } from "react";
 export default function Home() {
   // Define the interface of task-item object
   interface TaskItem {
-    id: string;
-    title: string;
-    completed: boolean;
+    id: string 
+    title: string 
+    completed: boolean
+    
   }
 
   // useState hook for an array of task-item objects
   const [tasks, setTasks] = useState<TaskItem[]>([]);
 
   // Define the function with proper type
-  const addTask = (newTaskTitle: string) => {
+  const addTask = (newTaskTitle : string) => {
     const newTask = { id: nanoid(), title: newTaskTitle, completed: false };
     const newTasks = [...tasks, newTask];
     setTasks(newTasks);
   };
 
   // Define the function with proper type
-  const deleteTask = (taskId: string) => {
+  const deleteTask = (taskId : string) => {
     const newTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(newTasks);
   };
 
   // Define the function with proper type
-  const toggleDoneTask = (taskId: string) => {
+  const toggleDoneTask = (taskId : string) => {
     //structuredClone will copy an array or an object "deeply"
     //So objects within an object will be copied too
     const newTasks = structuredClone(tasks);
     //search for a task based on condition
-    const task = newTasks.find((x) => x.id === taskId);
-    if (task) {
+    const task:any = newTasks.find((x) => x.id === taskId);
       task.completed = !task.completed;
       setTasks(newTasks);
-    }
   };
 
   return (
@@ -54,7 +53,7 @@ export default function Home() {
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         {/* Task summary */}
         <p className="text-center text-secondary fst-italic">
-          All ({tasks.length}) Done ({tasks.filter((task) => task.completed).length})
+          All ({tasks.length}) Done ({tasks.filter((task) => task.completed === true).length})
         </p>
         {/* task input */}
         <TaskInput addTaskFunc={addTask} />

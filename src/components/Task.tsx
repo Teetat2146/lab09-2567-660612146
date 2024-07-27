@@ -2,11 +2,11 @@ import React from "react";
 
 // define TaskItem interface to use as props type
 interface TaskItemProps {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
-  deleteTaskFunc: (taskId: number) => void; // callback function
-  toggleDoneTaskFunc: (taskId: number) => void; // callback function
+  deleteTaskFunc: (taskId: string) => void; // callback function
+  toggleDoneTaskFunc: (taskId: string) => void; // callback function
 }
 
 export default function Task({
@@ -20,10 +20,10 @@ export default function Task({
   const deleteBtnOnClick = () => {
     deleteTaskFunc(id);
   };
-
-  const toggleDoneClick = () => {
+  const doneBtnOnClick = () => {
     toggleDoneTaskFunc(id);
-  }
+  };
+
 
   return (
     <div className="d-flex p-3 gap-2 align-items-center border-bottom">
@@ -33,9 +33,11 @@ export default function Task({
         But if task is not completed : 
         <span>{title}</span>
       */}
-      <span className={completed ? "text-decoration-line-through" : ""}>{title}</span>
-      <button className="btn btn-success" onClick={toggleDoneClick}>Done</button>
-      <button className="btn btn-danger" onClick={deleteBtnOnClick}>Delete</button>
+      <span className={completed? "text-decoration-line-through" : ""}>{title}</span>
+      <button className="btn btn-success" onClick={doneBtnOnClick}>Done</button>
+      <button className="btn btn-danger" onClick={deleteBtnOnClick}>
+        Delete
+      </button>
     </div>
   );
 }

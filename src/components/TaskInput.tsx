@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 
 interface TaskInputProps {
@@ -31,7 +29,7 @@ export default function TaskInput({ addTaskFunc }: TaskInputProps) {
         onKeyUp={taskInputOnKeyUp}
         value={taskInput}
       />
-      <button className="btn btn-primary" onClick={addTaskBtnOnClick} disabled={taskInput == ''}>
+      <button className="btn btn-primary" disabled={taskInput == ''} onClick={addTaskBtnOnClick}>
         Add
       </button>
     </div>
